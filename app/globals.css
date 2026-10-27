@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS custom properties ──────────────────────────────────── */
+:root {
+  --line:       rgba(255, 255, 255, 0.08);
+  --line2:      rgba(255, 255, 255, 0.14);
+  --glass:      rgba(255, 255, 255, 0.04);
+  --glass2:     rgba(255, 255, 255, 0.07);
+  --gold-dim:   rgba(201, 169, 110, 0.15);
+  --gold-glow:  rgba(201, 169, 110, 0.08);
+  --success-bg: rgba(92,  156, 122, 0.10);
+  --success-bd: rgba(92,  156, 122, 0.25);
+  --danger-bg:  rgba(196,  92,  92, 0.10);
+  --danger-bd:  rgba(196,  92,  92, 0.25);
+  --warn-bg:    rgba(201, 132,  58, 0.10);
+  --warn-bd:    rgba(201, 132,  58, 0.25);
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --line:       rgba(0, 0, 0, 0.07);
+  --line2:      rgba(0, 0, 0, 0.13);
+  --glass:      rgba(0, 0, 0, 0.03);
+  --glass2:     rgba(0, 0, 0, 0.055);
+  --gold-dim:   rgba(138, 101, 48, 0.10);
+  --gold-glow:  rgba(138, 101, 48, 0.05);
+  --success-bg: rgba(46,  102,  68, 0.07);
+  --success-bd: rgba(46,  102,  68, 0.18);
+  --danger-bg:  rgba(140,  44,  44, 0.07);
+  --danger-bd:  rgba(140,  44,  44, 0.18);
+  --warn-bg:    rgba(122,  74,  20, 0.07);
+  --warn-bd:    rgba(122,  74,  20, 0.18);
+}
+
+/* ─── Base ────────────────────────────────────────────────────── */
+@layer base {
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: #0b0c10;
+    color: #e8e2d5;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  [data-theme="light"] body {
+    background-color: #f0ebe0;
+    color: #1e1a14;
+  }
+
+  /* Noise texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.45;
+  }
+
+  ::selection {
+    background: rgba(201, 169, 110, 0.25);
+    color: #e8cfa0;
+  }
+
+  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0b0c10; }
+  ::-webkit-scrollbar-thumb { background: rgba(201, 169, 110, 0.2); border-radius: 2px; }
+}
+
+/* ─── Utilities ───────────────────────────────────────────────── */
+@layer utilities {
+  .border-line    { border-color: var(--line); }
+  .border-line2   { border-color: var(--line2); }
+  .bg-glass       { background: var(--glass); }
+  .bg-glass2      { background: var(--glass2); }
+  .bg-gold-dim    { background: var(--gold-dim); }
+  .bg-gold-glow   { background: var(--gold-glow); }
+  .bg-success     { background: var(--success-bg); }
+  .bg-danger      { background: var(--danger-bg); }
+  .bg-warn        { background: var(--warn-bg); }
+  .border-success { border-color: var(--success-bd); }
+  .border-danger  { border-color: var(--danger-bd); }
+  .border-warn    { border-color: var(--warn-bd); }
+
+  /* Staggered fade-up delays */
+  .delay-100  { animation-delay: 100ms; }
+  .delay-200  { animation-delay: 200ms; }
+  .delay-300  { animation-delay: 300ms; }
+  .delay-400  { animation-delay: 400ms; }
+  .delay-500  { animation-delay: 500ms; }
+  .delay-600  { animation-delay: 600ms; }
+  .delay-700  { animation-delay: 700ms; }
+  .delay-800  { animation-delay: 800ms; }
+  .delay-900  { animation-delay: 900ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+
+  .animate-fade-up  { animation: fadeUp  0.7s ease both; }
+  .animate-slide-up { animation: slideUp 0.35s ease both; }
+}
